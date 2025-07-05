@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews - SmartWatchPro</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffc107',
+                        secondary: '#007bff',
+                        dark: '#343a40',
+                        light: '#f8f9fa',
+                        muted: '#6c757d'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            .star-rating {
+                display: inline-block;
+                unicode-bidi: bidi-override;
+                color: #ffc107;
+                font-size: 20px;
+                height: 20px;
+                width: auto;
+                margin: 0;
+                position: relative;
+                padding: 0;
+            }
+            .star-rating-top {
+                color: #ffc107;
+                padding: 0;
+                position: absolute;
+                z-index: 1;
+                display: block;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+            }
+            .star-rating-bottom {
+                padding: 0;
+                display: block;
+                z-index: 0;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-2xl font-bold text-dark">Timups<span class="text-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                        <div class="hidden md:flex space-x-8">
+                            <ul class="navbar-nav flex space-x-8">
+                                <li class="nav-item active">
+                                    <a href="index.html" class="font-medium hover:text-primary transition-colors">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="watches.html" class="font-medium hover:text-primary transition-colors">Watches</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="about.html" class="font-medium hover:text-primary transition-colors">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact.html" class="font-medium hover:text-primary transition-colors">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="detail.html" class="font-medium hover:text-primary transition-colors">Product Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="evaluate.html" class="font-medium hover:text-primary transition-colors">User Evaluate</a>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-muted hover:text-primary transition-colors">
+                        <i class="fa fa-search text-lg"></i>
+                    </a>
+                    <a href="#" class="text-muted hover:text-primary transition-colors">
+                        <i class="fa fa-user text-lg"></i>
+                    </a>
+                    <a href="#" class="text-muted hover:text-primary transition-colors relative">
+                        <i class="fa fa-shopping-cart text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </a>
+                    <button class="md:hidden text-dark focus:outline-none">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Review Filter Section -->
+    <section class="filter-section py-8 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h1 class="text-2xl font-bold text-dark">Customer Reviews</h1>
+                    <p class="text-muted">Read real user experiences and feedback</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>All Ratings</option>
+                            <option>5 Stars</option>
+                            <option>4 Stars</option>
+                            <option>3 Stars</option>
+                            <option>2 Stars</option>
+                            <option>1 Star</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Newest First</option>
+                            <option>Oldest First</option>
+                            <option>Highest Rating</option>
+                            <option>Lowest Rating</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-lg pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>All Reviews</option>
+                            <option>With Photos</option>
+                            <option>With Videos</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i class="fa fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Overall Rating Summary -->
+            <div class="bg-light rounded-xl p-6 mb-12">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="text-center md:text-left mb-6 md:mb-0">
+                        <h3 class="text-lg font-bold mb-2">Overall Rating</h3>
+                        <div class="text-4xl font-bold text-dark mb-2">4.8</div>
+                        <div class="star-rating mb-2">
+                            <span class="star-rating-top" style="width:96%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted">Based on 1,200+ reviews</p>
+                    </div>
+                    
+                    <div class="flex-1">
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <span class="w-16 text-sm">5 Stars</span>
+                                <div class="flex-1 mx-2 h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 85%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">85%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-16 text-sm">4 Stars</span>
+                                <div class="flex-1 mx-2 h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 10%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">10%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-16 text-sm">3 Stars</span>
+                                <div class="flex-1 mx-2 h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 3%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">3%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-16 text-sm">2 Stars</span>
+                                <div class="flex-1 mx-2 h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 1%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">1%</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="w-16 text-sm">1 Star</span>
+                                <div class="flex-1 mx-2 h-3 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary" style="width: 1%"></div>
+                                </div>
+                                <span class="w-12 text-sm text-right">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reviews List -->
+            <div class="reviews-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review Card 1 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:100%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">June 14, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Incredible features! Heart rate monitoring is accurate, battery life exceeds expectations, and the strap color is vibrant. The sleep analysis is surprisingly detailed, helping me adjust my schedule."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/237/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@TechEnthusiast_Li</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/1/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                        <img src="https://picsum.photos/id/2/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (24)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Black Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Card 2 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:90%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">June 10, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"As a swimming enthusiast, the waterproof performance is amazing! Data recording is accurate during swimming, and the battery lasts for days. Only minor downside: the dial is a bit large for smaller wrists."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/64/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Swimmer_Wang</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/3/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (18)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Blue Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Card 3 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:80%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">June 05, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Stylish design with intuitive operation. Diverse sports modes for running, cycling, hiking, etc. Battery life is impressive (I charge once a week). Minor software lag sometimes, hoping for optimization in future updates."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/91/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Outdoor_Enthusiast_Zhang</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (15)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Silver Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Card 4 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:100%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">June 01, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Bought for my mom, and she loves it! Clear interface, simple operation, and practical health monitoring. The reminder function is especially useful for setting medication and activity alerts, perfect for seniors."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/26/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Dutiful_Chen</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/4/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                        <img src="https://picsum.photos/id/5/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                        <img src="https://picsum.photos/id/6/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (32)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Rose Gold Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Card 5 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:70%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">May 28, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Overall good, but with some minor issues. First, the app store has limited apps—hoping for more useful additions. Second, touch sensitivity can be inconsistent, requiring firm presses. However, it's affordable and offers good value for money."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/177/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Tech_Reviewer_Lin</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (10)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Black Edition</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Card 6 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="star-rating">
+                            <span class="star-rating-top" style="width:95%">★★★★★</span>
+                            <span class="star-rating-bottom">★★★★★</span>
+                        </div>
+                        <p class="text-muted text-sm">May 20, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"One of the best smartwatches I've used! Elegant design, comfortable wear, and rich features. I particularly love the health monitoring, which tracks heart rate, blood oxygen, and stress levels in real time. Battery life is excellent, fully meeting my daily needs."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/342/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Fitness_Enthusiast_Mei</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/10/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover cursor-pointer transition-transform hover:scale-110">
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-100">
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-3">
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-thumbs-up mr-1"></i>
+                                    <span>Helpful (22)</span>
+                                </button>
+                                <button class="flex items-center text-muted hover:text-primary transition-colors">
+                                    <i class="fa fa-comment-o mr-1"></i>
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            <span class="text-xs text-muted">Purchased Silver Edition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-12">
+                <nav class="flex items-center space-x-2">
+                    <a href="#" class="px-3 py-2 rounded-lg border border-gray-300 text-muted hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                        <i class="fa fa-chevron-left"></i>
+                    </a>
+                    <a href="#" class="px-4 py-2 rounded-lg bg-primary text-white">1</a>
+                    <a href="#" class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors">2</a>
+                    <a href="#" class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors">3</a>
+                    <span class="px-2">...</span>
+                    <a href="#" class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-primary hover:text-white hover:border-primary transition-colors">12</a>
+                    <a href="#" class="px-3 py-2 rounded-lg border border-gray-300 text-muted hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                        <i class="fa fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">You May Also Like</h2>
+                <p class="text-muted max-w-2xl mx-auto">Check out our other popular products</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/119/300/300" alt="Smartwatch X2" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">BESTSELLER</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Smartwatch X2</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span class="text-muted text-sm ml-1">(4.9)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥999</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/160/300/300" alt="Sports Watch Pro" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Sports Watch Pro</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.0)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥1,499</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/180/300/300" alt="Fashion Watch Series 3" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">LIMITED</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Fashion Watch Series 3</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.5)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥1,799</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/201/300/300" alt="Basic Smartwatch" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-yellow-500 text-dark text-xs font-bold px-2 py-1 rounded">SALE</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Basic Smartwatch</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.2)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥599</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="subscribe py-16 bg-primary/10">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">Subscribe for Updates</h2>
+                <p class="text-muted mb-8">Get the latest product updates, promotions, and health tips first</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg">
+                        Subscribe Now
+                    </button>
+                </form>
+                <p class="text-sm text-muted mt-4">We respect your privacy and will not share your information with third parties</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SmartWatch<span class="text-primary">Pro</span></h3>
+                    <p class="text-gray-400 mb-6">Crafting high-quality smart wearable devices for your healthy lifestyle</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Help Center</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">User Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">After-Sales Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Warranty Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Service Centers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker mt-1 mr-3 text-primary"></i>
+                            <span class="text-gray-400">15th Floor, Smart Building, No.88 Technology Park, Haidian District, Beijing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-3 text-primary"></i>
+                            <span class="text-gray-400">400-888-9999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-3 text-primary"></i>
+                            <span class="text-gray-400">support@smartwatchpro.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o mr-3 text-primary"></i>
+                            <span class="text-gray-400">9:00-21:00, Monday to Sunday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 SmartWatchPro. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('py-2');
+                header.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Lazy load images
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = [].slice.call(document.querySelectorAll("img"));
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.classList.add("fade-in");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+        
+        // Star rating component
+        function initStarRatings() {
+            const stars = document.querySelectorAll('.star-rating');
+            stars.forEach(star => {
+                const topStars = star.querySelector('.star-rating-top');
+                const rating = parseFloat(topStars.style.width);
+                topStars.style.width = `${rating}%`;
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initStarRatings();
+            
+            // Image viewer
+            const reviewImages = document.querySelectorAll('.review-imgs img');
+            reviewImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    // Image viewer functionality can be implemented here
+                    alert('Image view feature triggered');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

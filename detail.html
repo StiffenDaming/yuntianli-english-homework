@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartWatch Pro - Product Details</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffc107',
+                        secondary: '#007bff',
+                        dark: '#343a40',
+                        light: '#f8f9fa',
+                        muted: '#6c757d'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-dark">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-2xl font-bold text-dark">Timups<span class="text-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                    <div class="hidden md:flex space-x-8">
+                        <ul class="navbar-nav flex space-x-8">
+                            <li class="nav-item active">
+                                <a href="index.html" class="font-medium hover:text-primary transition-colors">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="watches.html" class="font-medium hover:text-primary transition-colors">Watches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="font-medium hover:text-primary transition-colors">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="contact.html" class="font-medium hover:text-primary transition-colors">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="detail.html" class="font-medium hover:text-primary transition-colors">Product Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="evaluate.html" class="font-medium hover:text-primary transition-colors">User Evaluate</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-muted hover:text-primary transition-colors">
+                        <i class="fa fa-search text-lg"></i>
+                    </a>
+                    <a href="#" class="text-muted hover:text-primary transition-colors">
+                        <i class="fa fa-user text-lg"></i>
+                    </a>
+                    <a href="#" class="text-muted hover:text-primary transition-colors relative">
+                        <i class="fa fa-shopping-cart text-lg"></i>
+                        <span class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </a>
+                    <button class="md:hidden text-dark focus:outline-none">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <section class="watch-details py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="details-wrapper flex flex-col md:flex-row gap-8 items-center">
+                <!-- Watch Main Image -->
+                <div class="watch-img w-full md:w-1/2 relative group">
+                    <img src="https://picsum.photos/id/1/600/600" alt="Smartwatch Detailed View" class="w-full h-auto rounded-xl shadow-lg object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">NEW ARRIVAL</div>
+                </div>
+                
+                <!-- Product Information -->
+                <div class="watch-info w-full md:w-1/2">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-3">XX Series Smartwatch</h2>
+                    <p class="subtitle text-muted text-lg mb-6">Precision Monitoring · Colorful Life</p>
+                    
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-primary">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <span class="ml-2 text-muted">(4.8/5, 1200+ reviews)</span>
+                    </div>
+                    
+                    <div class="price mb-6">
+                        <span class="text-3xl font-bold text-dark">¥1,299</span>
+                        <span class="ml-2 text-muted line-through">¥1,599</span>
+                        <span class="ml-2 bg-red-100 text-red-600 text-sm px-2 py-1 rounded">SAVE ¥300</span>
+                    </div>
+                    
+                    <ul class="features mb-8">
+                        <li class="flex items-center mb-2">
+                            <i class="fa fa-check-circle text-primary mr-2"></i>
+                            <span>Real-time Heart Rate & Blood Oxygen Monitoring</span>
+                        </li>
+                        <li class="flex items-center mb-2">
+                            <i class="fa fa-check-circle text-primary mr-2"></i>
+                            <span>50M Water Resistance</span>
+                        </li>
+                        <li class="flex items-center mb-2">
+                            <i class="fa fa-check-circle text-primary mr-2"></i>
+                            <span>Ultra-long Battery Life: 15 Days</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check-circle text-primary mr-2"></i>
+                            <span>Customizable Dial Ecosystem</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="specs mb-8 bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Technical Specifications</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">Screen Size:</span>
+                                <span class="font-medium">1.78" AMOLED</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">Weight:</span>
+                                <span class="font-medium">38g (excluding strap)</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">Charging:</span>
+                                <span class="font-medium">Magnetic Fast Charging</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">Battery Capacity:</span>
+                                <span class="font-medium">300mAh</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">System Support:</span>
+                                <span class="font-medium">iOS & Android</span>
+                            </p>
+                            <p class="flex items-center">
+                                <span class="w-1/2 text-muted">Sports Modes:</span>
+                                <span class="font-medium">50+ Modes</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="color-options mb-8">
+                        <h3 class="text-lg font-bold mb-3">Choose Color</h3>
+                        <div class="flex space-x-3">
+                            <button class="w-10 h-10 rounded-full bg-black border-2 border-white outline outline-2 outline-black cursor-pointer"></button>
+                            <button class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 outline outline-2 outline-transparent hover:outline-primary cursor-pointer transition-all"></button>
+                            <button class="w-10 h-10 rounded-full bg-blue-700 border-2 border-white outline outline-2 outline-transparent hover:outline-primary cursor-pointer transition-all"></button>
+                            <button class="w-10 h-10 rounded-full bg-pink-500 border-2 border-white outline outline-2 outline-transparent hover:outline-primary cursor-pointer transition-all"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="checkout.html" class="btn-buy flex-1 text-center bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl">
+                            <i class="fa fa-shopping-cart mr-2"></i>Buy Now
+                        </a>
+                        <button class="flex-1 bg-white hover:bg-gray-50 text-dark font-bold py-4 px-6 rounded-xl transition-all border border-gray-300 shadow-md hover:shadow-lg">
+                            <i class="fa fa-heart-o mr-2"></i>Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Features Section -->
+    <section class="features-section py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">Why Choose Our Smartwatch</h2>
+                <p class="text-muted max-w-2xl mx-auto">Our smartwatch is not just a timepiece, but a helper for your healthy lifestyle</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-heartbeat text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Health Monitoring</h3>
+                    <p class="text-muted">24/7 heart rate & blood oxygen monitoring, sleep analysis, stress detection to help you understand your health status.</p>
+                </div>
+                
+                <!-- Feature Card 2 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-tint text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">50M Waterproof</h3>
+                    <p class="text-muted">Suitable for swimming, showering, and daily use with IP68 waterproof rating, no need to worry about water damage.</p>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-bolt text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Long Battery Life</h3>
+                    <p class="text-muted">15-day battery life on a single charge, fast charging recovers 50% power in 30 minutes.</p>
+                </div>
+                
+                <!-- Feature Card 4 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-map-marker text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">GPS Positioning</h3>
+                    <p class="text-muted">Built-in high-precision GPS for accurate sports tracking, supports multiple sports modes with detailed data statistics.</p>
+                </div>
+                
+                <!-- Feature Card 5 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-bell text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Smart Notifications</h3>
+                    <p class="text-muted">Receive calls, messages, and social media notifications, sedentary reminders, and alarm functions to never miss important events.</p>
+                </div>
+                
+                <!-- Feature Card 6 -->
+                <div class="feature-card p-6 bg-light rounded-xl shadow-sm card-hover">
+                    <div class="feature-icon w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-paint-brush text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Personalized Customization</h3>
+                    <p class="text-muted">Thousands of free dials to download, multiple straps to replace, meeting your personalized needs for different occasions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="reviews py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">Customer Reviews</h2>
+                <p class="text-muted max-w-2xl mx-auto">Hear what our customers say and make a confident choice</p>
+            </div>
+            
+            <div class="reviews-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review Card 1 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="flex text-primary">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <p class="text-muted text-sm">June 14, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Incredible features! Heart rate monitoring is accurate, battery life exceeds expectations, and the strap color is vibrant. The sleep analysis is surprisingly detailed, helping me adjust my schedule."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/237/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@TechEnthusiast_Li</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/1/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover">
+                        <img src="https://picsum.photos/id/2/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover">
+                    </div>
+                </div>
+                
+                <!-- Review Card 2 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="flex text-primary">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                        <p class="text-muted text-sm">June 10, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"As a swimming enthusiast, the waterproof performance is amazing! Data recording is accurate during swimming, and the battery lasts for days. Only minor downside: the dial is a bit large for smaller wrists."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/64/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Swimmer_Wang</span>
+                    </div>
+                    <div class="review-imgs flex gap-2">
+                        <img src="https://picsum.photos/id/3/100/100" alt="User Photo" class="w-20 h-20 rounded-lg object-cover">
+                    </div>
+                </div>
+                
+                <!-- Review Card 3 -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-sm card-hover">
+                    <div class="rating flex justify-between items-center mb-4">
+                        <div class="flex text-primary">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <p class="text-muted text-sm">June 05, 2025</p>
+                    </div>
+                    <p class="user-text text-gray-700 mb-6">"Stylish design with intuitive operation. Diverse sports modes for running, cycling, hiking, etc. Battery life is impressive (I charge once a week). Minor software lag sometimes, hoping for optimization in future updates."</p>
+                    <div class="user-info flex items-center mb-4">
+                        <img src="https://picsum.photos/id/91/100/100" alt="User Avatar" class="w-12 h-12 rounded-full object-cover">
+                        <span class="ml-3 font-medium">@Outdoor_Enthusiast_Zhang</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <button class="load-more bg-secondary hover:bg-secondary/90 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa fa-refresh mr-2"></i>Load More Reviews
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">You May Also Like</h2>
+                <p class="text-muted max-w-2xl mx-auto">Check out our other popular products</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/119/300/300" alt="Smartwatch X2" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">BESTSELLER</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Smartwatch X2</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span class="text-muted text-sm ml-1">(4.9)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥999</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/160/300/300" alt="Sports Watch Pro" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Sports Watch Pro</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.0)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥1,499</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/180/300/300" alt="Fashion Watch Series 3" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">LIMITED</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Fashion Watch Series 3</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.5)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥1,799</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/201/300/300" alt="Basic Smartwatch" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 left-3 bg-yellow-500 text-dark text-xs font-bold px-2 py-1 rounded">SALE</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold mb-2">Basic Smartwatch</h3>
+                        <div class="flex text-primary mb-2">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <span class="text-muted text-sm ml-1">(4.2)</span>
+                        </div>
+                        <div class="price flex items-center justify-between">
+                            <span class="text-xl font-bold">¥599</span>
+                            <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-3 py-2 rounded-full transition-colors">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="subscribe py-16 bg-primary/10">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-dark mb-4">Subscribe for Updates</h2>
+                <p class="text-muted mb-8">Get the latest product updates, promotions, and health tips first</p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button type="submit" class="bg-primary hover:bg-primary/90 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg">
+                        Subscribe Now
+                    </button>
+                </form>
+                <p class="text-sm text-muted mt-4">We respect your privacy and will not share your information with third parties</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SmartWatch<span class="text-primary">Pro</span></h3>
+                    <p class="text-gray-400 mb-6">Crafting high-quality smart wearable devices for your healthy lifestyle</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Help Center</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">User Guide</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">After-Sales Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Warranty Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Service Centers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker mt-1 mr-3 text-primary"></i>
+                            <span class="text-gray-400">15th Floor, Smart Building, No.88 Technology Park, Haidian District, Beijing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-3 text-primary"></i>
+                            <span class="text-gray-400">400-888-9999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-3 text-primary"></i>
+                            <span class="text-gray-400">support@smartwatchpro.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o mr-3 text-primary"></i>
+                            <span class="text-gray-400">9:00-21:00, Monday to Sunday</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 SmartWatchPro. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('py-2');
+                header.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Lazy load images
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = [].slice.call(document.querySelectorAll("img"));
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.classList.add("fade-in");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
